@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Vision Admin</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f2fa;
+      color: #25213b;
+    }
+
+    header {
+      background: #5120a8;
+      color: white;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+
+    .login, .dashboard {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 18px #0001;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #6128b5;
+      color: white;
+      border: 0;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 5px 0;
+    }
+
+    .logout {
+      background: #e53935;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: #f1eaff;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .card h2 {
+      color: #5120a8;
+      margin-top: 10px;
+    }
+
+    .section {
+      margin-top: 25px;
+      padding: 18px;
+      background: #faf9ff;
+      border-radius: 10px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>Career Vision Admin</h2>
+  <button class="logout" onclick="logout()" id="logoutBtn" hidden>
+    Logout
+  </button>
+</header>
+
+<div class="container">
+
+  <div class="login" id="loginBox">
+    <h2>Admin Login</h2>
+    <p>Login to manage Career Vision</p>
+
+    <input type="email" id="email" placeholder="Admin Email">
+    <input type="password" id="password" placeholder="Admin Password">
+
+    <button onclick="login()">Login</button>
+    <p id="message"></p>
+  </div>
+
+  <div class="dashboard" id="dashboard" hidden>
+    <h2>Welcome, Admin!</h2>
+    <p>Career Vision Management Panel</p>
+
+    <div class="cards">
+      <div class="card">
+        <p>Total Students</p>
+        <h2 id="students">0</h2>
+      </div>
+
+      <div class="card">
+        <p>Total Courses</p>
+        <h2 id="courses">0</h2>
+      </div>
+
+      <div class="card">
+        <p>Live Classes</p>
+        <h2 id="classes">0</h2>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>Student Management</h3>
+      <p>Students section is ready for backend connection.</p>
+      <button onclick="alert('Student management will be connected to the database.')">
+        Manage Students
+      </button>
+    </div>
+
+    <div class="section">
+      <h3>Course Management</h3>
+      <input id="courseName" placeholder="Enter Course Name">
+      <button onclick="addCourse()">Add Course</button>
+      <ul id="courseList"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Live Classes</h3>
+      <input id="className" placeholder="Enter Live Class Name">
+      <button onclick="addClass()">Add Live Class</button>
+      <ul id="classList"></ul>
+    </div>
+
+    <div class="section">
+      <h3>Study Notes</h3>
+      <p>PDF upload feature will be added with backend storage.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // DEMO ONLY: This is not secure authentication.
+  // Never put a real admin password in browser JavaScript.
+
+  const demoEmail = "admin@example.com";
+  const demoPassword = "Demo12345";
+
+  function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    if (email === demoEmail && password === demoPassword) {
+      document.getElementById("loginBox").hidden = true;
+      document.getElementById("dashboard").hidden = false;
+      document.getElementById("logoutBtn").hidden = false;
+    } else {
+      message.textContent = "Incorrect demo email or password.";
+      message.style.color = "red";
+    }
+  }
+
+  function logout() {
+    document.getElementById("dashboard").hidden = true;
+    document.getElementById("loginBox").hidden = false;
+    document.getElementById("logoutBtn").hidden = true;
+    document.getElementById("password").value = "";
+  }
+
+  function addCourse() {
+    const input = document.getElementById("courseName");
+    if (!input.value.trim()) return alert("Enter course name");
+
+    const li = document.createElement("li");
+    li.textContent = input.value.trim();
+    document.getElementById("courseList").appendChild(li);
+    input.value = "";
+
+    document.getElementById("courses").textContent =
+      document.getElementById("courseList").children.length;
+  }
+
+  function addClass() {
+    const input = document.getElementById("className");
+    if (!input.value.trim()) return alert("Enter class name");
+
+    const li = document.createElement("li");
+    li.textContent = input.value.trim();
+    document.getElementById("classList").appendChild(li);
+    input.value = "";
+
+    document.getElementById("classes").textContent =
+      document.getElementById("classList").children.length;
+  }
+</script>
+
+</body>
+</html>
