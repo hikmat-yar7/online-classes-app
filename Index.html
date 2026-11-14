@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Vision - Coaching App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo">Career <span>Vision</span></div>
+    <button class="login-btn" onclick="showLogin()">Login</button>
+</header>
+
+<!-- HOME PAGE -->
+<main id="homePage">
+
+<section class="hero">
+    <p class="tag">WELCOME TO CAREER VISION</p>
+    <h1>Padho Online,<br>Badho Aage!</h1>
+    <p>Your Success Is Our Mission.</p>
+    <button onclick="exploreCourses()">Explore Courses →</button>
+</section>
+
+<!-- CLASSES -->
+<section class="section">
+    <h2>Explore Classes</h2>
+    <div class="class-grid">
+        <button onclick="selectClass('Class 1')">Class 1</button>
+        <button onclick="selectClass('Class 2')">Class 2</button>
+        <button onclick="selectClass('Class 3')">Class 3</button>
+        <button onclick="selectClass('Class 4')">Class 4</button>
+        <button onclick="selectClass('Class 5')">Class 5</button>
+        <button onclick="selectClass('Class 6')">Class 6</button>
+        <button onclick="selectClass('Class 7')">Class 7</button>
+        <button onclick="selectClass('Class 8')">Class 8</button>
+        <button onclick="selectClass('Class 9')">Class 9</button>
+        <button onclick="selectClass('Class 10')">Class 10</button>
+        <button onclick="selectClass('Class 11')">Class 11</button>
+        <button onclick="selectClass('Class 12')">Class 12</button>
+        <button onclick="selectClass('JEE')">JEE</button>
+        <button onclick="selectClass('NEET')">NEET</button>
+    </div>
+</section>
+
+<!-- COURSES -->
+<section class="section" id="courses">
+    <h2>Popular Courses</h2>
+
+    <div class="course-grid">
+
+        <article class="course-card">
+            <div class="course-image purple">📚</div>
+            <div class="course-info">
+                <span class="free">FREE DEMO</span>
+                <h3>Class 10 Foundation</h3>
+                <p>Maths • Science • English</p>
+                <button onclick="viewCourse('Class 10 Foundation')">View Course</button>
+            </div>
+        </article>
+
+        <article class="course-card">
+            <div class="course-image pink">🎓</div>
+            <div class="course-info">
+                <span class="free">FREE DEMO</span>
+                <h3>Class 12 Science</h3>
+                <p>Physics • Chemistry • Biology</p>
+                <button onclick="viewCourse('Class 12 Science')">View Course</button>
+            </div>
+        </article>
+
+        <article class="course-card">
+            <div class="course-image blue">🚀</div>
+            <div class="course-info">
+                <span class="coming">COMING SOON</span>
+                <h3>JEE Preparation</h3>
+                <p>Complete JEE Preparation</p>
+                <button onclick="viewCourse('JEE Preparation')">View Course</button>
+            </div>
+        </article>
+
+        <article class="course-card">
+            <div class="course-image orange">🧬</div>
+            <div class="course-info">
+                <span class="coming">COMING SOON</span>
+                <h3>NEET Preparation</h3>
+                <p>Biology • Physics • Chemistry</p>
+                <button onclick="viewCourse('NEET Preparation')">View Course</button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section">
+    <h2>Why Choose Us?</h2>
+    <div class="feature-grid">
+        <div>🎥<h3>Live Classes</h3></div>
+        <div>📖<h3>Study Notes</h3></div>
+        <div>📝<h3>Online Tests</h3></div>
+        <div>🏆<h3>Expert Teachers</h3></div>
+    </div>
+</section>
+
+</main>
+
+<!-- STUDENT DASHBOARD -->
+<main id="studentDashboard" class="dashboard" hidden>
+
+    <div class="welcome">
+        <div>
+            <p>Welcome Back,</p>
+            <h2 id="studentName">Student</h2>
+        </div>
+        <div class="profile-icon">👤</div>
+    </div>
+
+    <div class="dashboard-banner">
+        <h2>Learn With Career Vision</h2>
+        <p>Your Success Starts Here!</p>
+    </div>
+
+    <h2 class="section-heading">My Learning</h2>
+
+    <div class="dash-grid">
+        <button class="dash-card" onclick="openMyCourses()">
+            <span>📚</span>
+            <h3>My Courses</h3>
+            <p>View your courses</p>
+        </button>
+
+        <button class="dash-card" onclick="openLiveClasses()">
+            <span>🎥</span>
+            <h3>Live Classes</h3>
+            <p>Join your classes</p>
+        </button>
+
+        <button class="dash-card" onclick="openNotes()">
+            <span>📖</span>
+            <h3>Study Notes</h3>
+            <p>Read notes</p>
+        </button>
+
+        <button class="dash-card" onclick="showTests()">
+            <span>📝</span>
+            <h3>My Tests</h3>
+            <p>Practice questions</p>
+        </button>
+    </div>
+
+    <div class="progress-card">
+        <h3>My Learning Progress</h3>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <p>0% Completed</p>
+    </div>
+
+    <button class="logout-btn" onclick="logoutStudent()">Logout</button>
+
+</main>
+
+<!-- LOGIN / SIGNUP MODAL -->
+<div class="auth-overlay" id="authOverlay" hidden>
+    <div class="auth-box">
+
+        <button class="close-btn" onclick="closeLogin()">×</button>
+
+        <div class="auth-logo">Career <span>Vision</span></div>
+
+        <h2 id="authTitle">Welcome Back!</h2>
+        <p class="auth-subtitle">Login to continue learning</p>
+
+        <form id="loginForm">
+            <input type="email" id="loginEmail"
+                placeholder="Enter Email" required>
+
+            <input type="password" id="loginPassword"
+                placeholder="Enter Password" required>
+
+            <button type="submit" class="auth-submit">Login</button>
+
+            <p class="auth-switch">
+                New Student?
+                <a href="#" onclick="showSignup(event)">Create Account</a>
+            </p>
+        </form>
+
+        <form id="signupForm" hidden>
+            <input type="text" id="signupName"
+                placeholder="Enter Full Name" required>
+
+            <input type="email" id="signupEmail"
+                placeholder="Enter Email" required>
+
+            <input type="password" id="signupPassword"
+                placeholder="Create Password" minlength="6" required>
+
+            <button type="submit" class="auth-submit">Create Account</button>
+
+            <p class="auth-switch">
+                Already registered?
+                <a href="#" onclick="showLoginForm(event)">Login</a>
+            </p>
+        </form>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <h2>Career Vision</h2>
+    <p>Learn Today, Lead Tomorrow.</p>
+    <p>© 2026 Career Vision</p>
+</footer>
+
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom-nav">
+    <button onclick="goHome()">🏠<span>Home</span></button>
+    <button onclick="exploreCourses()">📚<span>Courses</span></button>
+    <button onclick="showTests()">📝<span>Tests</span></button>
+    <button onclick="showLogin()">👤<span>Profile</span></button>
+</nav>
+
+<script src="script.js"></script>
+</body>
+          </html>
+          
